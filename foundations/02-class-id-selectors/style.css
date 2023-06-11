@@ -1,0 +1,19 @@
+.oddone {
+    background-color: #ff58ac;
+    font-family: "Verdana", "DejaVu Sans", sans-serif;
+}
+
+#secondone {
+    color: rgb(0,0,255);
+    font-size: 36px;
+}
+
+.thirdone {
+    font-size: 24px;
+}
+
+#fourthone {
+    background-color: rgb(60, 179, 113);
+    font-size: 24px;
+    font-weight: bold;
+}
