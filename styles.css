@@ -1,0 +1,15 @@
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: rgb(210, 237, 245);
+}
+
+h1 {
+    background-color: rgb(61, 126, 223);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.recipeimage {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
