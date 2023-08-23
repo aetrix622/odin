@@ -12,6 +12,27 @@ img {
   font-weight: 900;
 }
 
+/* my solution below */
+
+body {
+  text-align: center;
+}
+
+.title {
+  margin-bottom: 32px;
+}
+
+.infobox {
+  display: flex;
+  justify-content: center;
+  gap: 52px;
+  
+}
+
+.infoitem {
+  max-width: 200px;
+}
+
 /* do not edit this footer */
 .footer {
   position: fixed;
