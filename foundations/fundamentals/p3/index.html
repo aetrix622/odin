@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Javascript Function Exercise</title>
+</head>
+
+<body>
+    <h1>Javascript Function Exercise</h1>
+    <h2>Foundations - Fundamentals - Part 3</h2>
+    <p>Please view page source to view the javascript functions.</p>
+
+    <script>
+        // 1. Write a function called add7 that takes one number and returns that number +7
+        function add7(a) {
+            return a + 7;
+        }
+
+        // 2. write a function called multiply that takes 2 numbers and returns their product.
+        function multiply(a, b) {
+            return a * b;
+        }
+
+        // 3. write a function called capitalize that takes a string and returns that string with only the first letter capitalized. Make sure that it can take strings that are lowercase, UPPERCASE or BoTh.
+        function capitalize(strInput) {
+            let arryString = strInput.split("");
+            let firstChar = true;
+            let reassembledString = "";
+            for (let char in arryString) {
+                if (firstChar == true) {
+                    reassembledString += arryString[char].toUpperCase();
+                } else reassembledString += arryString[char].toLowerCase();
+
+                firstChar = false;
+            }
+            return reassembledString;
+        }
+
+        // 4. Write a function called lastLetter that takes a string and returns the very last letter of that string: lastLetter("abcd") should return "d".
+
+        function lastLetter(strInput) {
+            return strInput[strInput.length - 1]
+        }
+    </script>
+</body>
+
+</html>
