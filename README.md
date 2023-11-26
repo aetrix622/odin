@@ -1,5 +1,5 @@
 # The Odin Project
-==================
+--------------------------
 
 ## Completed Coursework by Joe Rochinski
 
