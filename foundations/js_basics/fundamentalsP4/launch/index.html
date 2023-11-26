@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Countdown to Launch</title>
+</head>
+
+<body>
+    <h1>Launch Countdown</h1>
+    <h4>The Odin Project / Foundations Course / Javascript Basics / Fundamentals Part 4</h4>
+    <p>This exercise is part of MDN web docs and the original instructions can be found <a
+            href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Looping_code#active_learning_launch_countdown">here</a>.
+        For convenience, the exercise requirements are reproduced below.</p>
+    <h2>Active Learning: Launch countdown</h2>
+    <p>In this exercise, we want you to print out a simple launch countdown to the output box, from 10 down to Blastoff.
+        Specifically, we want you to:</p>
+    <ul>
+        <li>
+            Loop from 10 down to 0. We've provided you with an initializer &mdash; <code>let i = 10;</code>.
+        </li>
+        <li>
+            For each iteration, create a new paragraph and append it to the output <code>&lt;/div&gt;</code>, which
+                we've selected using <code>const output = document.querySelector('.output');</code>. In comments, we've
+                provided you with three code lines that need to be used somewhere inside the loop:
+            <ul>
+                <li>
+                    <code>const para = document.createElement('p');</code> &mdash; creates a new paragraph.
+                </li>
+                <li>
+                    <code>output.appendChild(para);</code> &mdash; appends the paragraph to the output
+                    <code>&lt;div&gt;</code>.
+                </li>
+                <li>
+                    <code>para.textContent =</code> &mdash; makes the text inside the paragraph equal to whatever you
+                    put on the right-hand side, after the equals sign.
+                </li>
+            </ul>
+        </li>
+        <li>
+            Different iteration numbers require different text to be put in the paragraph for that iteration (you'll need a conditoinal statement and multiple <code>para.textContent =</code> lines):
+            <ul>
+                <li>
+                    If the number is 10, print "Countdown 10" to the paragraph.
+                </li>
+                <li>
+                    If the number is 0, print "Blast off!" to the paragraph.
+                </li>
+                <li>
+                    For any other number, print just the number to the paragraph.
+                </li>
+            </ul>
+        </li>
+        <li>Remember to include an iterator! However, in this example we are counting down after each iteration, not up, so you <strong>don't</strong> want <code>i++</code> &mdash; how do you iterate downwards?</li>
+    </ul>
+
+    <h2>Exercise output</h2>
+
+    <div class="output">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
