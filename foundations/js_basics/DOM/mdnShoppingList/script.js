@@ -1,8 +1,6 @@
 const list = document.querySelector("#list");
 const tbInput = document.querySelector("#item");
 const btnSubmit = document.querySelector("#submit");
-let itemID = "item-"
-let itemIndex = 0;
 
 btnSubmit.addEventListener("click", doSubmit);
 
@@ -18,7 +16,6 @@ function doSubmit() {
     if (tbInput.value === "") return;
 
     // get formdata and unique item ID, then clear the text box
-    const listItemID = itemID + itemIndex;
     const tbInputValue = tbInput.value;
     tbInput.value = "";
     
@@ -26,7 +23,6 @@ function doSubmit() {
     const listItem = document.createElement("li");
     const itemSpan = document.createElement("span");
     const delButton = document.createElement("button");
-    listItem.setAttribute("id", listItemID);
     listItem.appendChild(itemSpan);
     listItem.appendChild(delButton);
     itemSpan.textContent = tbInputValue;
@@ -37,11 +33,9 @@ function doSubmit() {
 
     // click delete button to remove line
     delButton.addEventListener("click", (e) => {
-        let itemToDelete = document.querySelector(`#${listItemID}`);
-        itemToDelete.remove();
+        list.removeChild(listItem);
     })
 
-    // bump the unique item index and return focus to the text box
-    itemIndex++;
+    // return focus to the text box
     tbInput.focus();
 }
