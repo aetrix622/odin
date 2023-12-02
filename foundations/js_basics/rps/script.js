@@ -1,4 +1,29 @@
 window.onload = main();
+const btnNewGame = document.querySelector("#btnNewGame");
+const btnRock = document.querySelector('#btnRock');
+const btnPaper = document.querySelector('#btnPaper');
+const btnScissors = document.querySelector('#btnScissors');
+const divResult = document.querySelector('#result');
+const divRecord = document.querySelector('#record');
+const lblRound = document.querySelector('#lblRound');
+let currentRound = 1;
+let playerWins = 0;
+let cpuWins = 0;
+let ties = 0;
+
+btnNewGame.addEventListener("click", newGame);
+
+btnRock.addEventListener("click", () => {
+    playRound("ROCK", getComputerChoice());
+});
+
+btnPaper.addEventListener("click", () => {
+    playRound("PAPER", getComputerChoice());
+});
+
+btnScissors.addEventListener("click", () => {
+    playRound("SCISSORS", getComputerChoice());
+});
 
 function main() {
     console.log("Welcome to Rock Paper Scissors! Type game(); to begin!");
@@ -21,82 +46,90 @@ function getComputerChoice() {
     return choice;
 }
 
-// playRound() takes the params playerSelection and computerSelection and returns a result object { result, resultString, playerSelection, computerSelection } Args must be either "ROCK", "PAPER", or "SCISSORS", case sensitive.
+// playRound() takes the params playerSelection and computerSelection and returns 
+// a result object { result, resultString, playerSelection, computerSelection } 
+// Args must be either "ROCK", "PAPER", or "SCISSORS", case sensitive.
 function playRound(playerSelection, computerSelection) {
     let result;
     let resultString;
     if (playerSelection == "ROCK" && computerSelection == "PAPER" || playerSelection == "PAPER" && computerSelection == "SCISSORS" || playerSelection == "SCISSORS" && computerSelection == "ROCK") {
         // lose
+        cpuWins++;
         result = "lose";
         resultString = `You LOSE!! ${computerSelection} beats ${playerSelection}!`;
     } else if (playerSelection == computerSelection) {
         // tie
+        ties++;
         result = "tie";
         resultString = `TIE!! You both picked ${playerSelection}`
     }
     else {
         // win
+        playerWins++;
         result = "win";
         resultString = `You WIN!! ${playerSelection} beats ${computerSelection}!`;
     }
-    return {
+    let roundResult = {
         result: result,
         resultString: resultString,
         playerSelection: playerSelection,
         computerSelection: computerSelection
     }
+    displayResult(roundResult);
+    displayRecord();
+    if (playerWins == 5 || cpuWins == 5) {
+        endGame();
+        return;
+    }
+    newRound();
 }
 
-// game() plays 5 rounds of Rock Paper Scissors and returns the result.
-function game() {
-    let record = {
-        wins: 0,
-        losses: 0,
-        ties: 0,
-        totalRounds: 0
-    }
-    let playerSelection;
-    let computerSelection;
-    // play 5 rounds
-    for (let round = 1; round <= 5; round++) {
-        let inputOK = false;
-        // get playerSelection and make sure the input is valid
-        while (inputOK === false) {
-            playerSelection = prompt("Select rock, paper, or scissors:").toUpperCase();
-            if (playerSelection === "ROCK" || playerSelection === "PAPER" || playerSelection === "SCISSORS") {
-                inputOK = true;
-            } else {
-                alert("I didn't understand that. Please try again.");
-            }
-        }
-        // get computer selection
-        computerSelection = getComputerChoice();
-        // play the round, display the result and update the record
-        let roundResult = playRound(playerSelection, computerSelection);
-        console.log(roundResult.resultString);
-        switch (roundResult.result) {
-            case "win":
-                record.wins++;
-                break;
-            case "lose":
-                record.losses++;
-                break;
-            case "tie":
-                record.ties++;
-                break;
-        }
-        record.totalRounds++;
-        console.group();
-        console.log(`Record: W-${record.wins} L-${record.losses} T-${record.ties} in ${record.totalRounds} rounds.`);
-        console.groupEnd();
-    }
-    // 5 rounds complete. Display the final result.
-    if (record.wins > record.losses) {
-        console.log(`Congratulations! You are the champion with ${record.wins} wins!`);
-    } else if (record.wins < record.losses) {
-        console.log(`Sorry, the computer beat you with ${record.losses} wins... Better luck next time!`);
+function endGame() {
+    if (playerWins === 5) {
+        alert("YOU WON!!");
     } else {
-        console.log(`You Tied in a best of 5! Is that even possible?`);
+        alert("YOU LOST!");
     }
-    console.log("Type game(); to play again.");
+    newGame();
 }
+
+function displayResult(roundResult) {
+    divResult.innerHTML = "";
+    let cpuSelect = document.createElement("p");
+    cpuSelect.textContent = `CPU selects: ${roundResult.computerSelection}`;
+    let playerSelect = document.createElement("p");
+    playerSelect.textContent = `Player selects: ${roundResult.playerSelection}`;
+    let resultString = document.createElement("p");
+    resultString.textContent = roundResult.resultString;
+    divResult.appendChild(cpuSelect);
+    divResult.appendChild(playerSelect);
+    divResult.appendChild(resultString);    
+}
+
+function newGame() {
+    currentRound = 1;
+    playerWins = 0;
+    cpuWins = 0;
+    ties = 0;
+    lblRound.textContent = `Round ${currentRound}`;
+    divResult.innerHTML = "";
+    displayRecord();
+}
+
+function newRound() {
+    currentRound++;
+    lblRound.textContent = `Round ${currentRound}`
+}
+
+function displayRecord() {
+    divRecord.innerHTML = "";
+    let winString = `Player ${playerWins} - ${cpuWins} CPU`;
+    let tieString = `Ties: ${ties}`;
+    let paraWinLoss = document.createElement("p");
+    paraWinLoss.innerText = winString;
+    divRecord.appendChild(paraWinLoss);
+    let paraTies = document.createElement("p");
+    paraTies.innerText = tieString;
+    divRecord.appendChild(paraTies);
+}
+
