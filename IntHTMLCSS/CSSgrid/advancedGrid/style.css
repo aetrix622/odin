@@ -8,9 +8,9 @@
         border: 1px solid grey;
         background-color: skyblue;
         /* grid-template-rows: 150px 150px; */
-        grid-template-rows: repeat(2, min(200px, 50%));
+        grid-template-rows: repeat(2, 1fr);
         /* grid-template-columns: 150px 150px 150px 150px 150px; */
-        grid-template-columns: repeat(5, max(120px, 15%h));
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
 
     .grid-item {
