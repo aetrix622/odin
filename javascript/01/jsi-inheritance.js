@@ -58,52 +58,74 @@
 // console.log(user.fullName);
 
 // ANIMAL HAS METHODS
-let animal =  {
-    walk() {
-        if (!this.isSleeping) {
-            alert('I walk');
-        }
-    },
-    sleep() {
-        this.isSleeping = true;
-    },
-    wake() {
-        this.isSleeping = false;
-    },
+// let animal =  {
+//     walk() {
+//         if (!this.isSleeping) {
+//             alert('I walk');
+//         }
+//     },
+//     sleep() {
+//         this.isSleeping = true;
+//     },
+//     wake() {
+//         this.isSleeping = false;
+//     },
+// };
+
+// let rabbit = {
+//     name: "White Rabbit",
+// }
+
+// Object.setPrototypeOf(rabbit, animal);
+
+// // maodifies rabbit.isSleeping
+// rabbit.sleep();
+
+// console.log('rabbit.isSleeping: ' + rabbit.isSleeping); // true
+// console.log('animal.isSleeping ' + animal.isSleeping); // undefined
+
+// // for ... in loops
+
+// let creature = {
+//     eats: true,
+// };
+
+// let monkey = {
+//     swings: true,
+// };
+
+// Object.setPrototypeOf(monkey, creature);
+
+// // Object.keys only returns own keys
+// console.log(Object.keys(monkey));
+// for (let prop in monkey) {
+//     let isOwn = monkey.hasOwnProperty(prop);
+
+//     if (isOwn) {
+//         console.log(`Our: ${prop}`);
+//     } else {
+//         console.log(`Inherited: ${prop}`);
+//     }
+// }
+
+// SEARCHING ALGORITHM
+let head = {
+    glasses: 1,
 };
 
-let rabbit = {
-    name: "White Rabbit",
-}
-
-Object.setPrototypeOf(rabbit, animal);
-
-// maodifies rabbit.isSleeping
-rabbit.sleep();
-
-console.log('rabbit.isSleeping: ' + rabbit.isSleeping); // true
-console.log('animal.isSleeping ' + animal.isSleeping); // undefined
-
-// for ... in loops
-
-let creature = {
-    eats: true,
+let table = {
+    pen: 3,
 };
 
-let monkey = {
-    swings: true,
+let bed = {
+    sheet: 1,
+    pillow: 2,
 };
 
-Object.setPrototypeOf(monkey, creature);
+let pockets = {
+    money: 2000,
+};
 
-// Object.keys only returns own keys
-console.log(Object.keys(monkey));
-for (let prop in monkey) {
-    let isOwn = monkey.hasOwnProperty(prop);
-
-    if (isOwn) {
-        console.log(`Our: ${prop}`);
-    } else {
-        console.log(`Inherited: ${prop}`);
-    }
-}
+Object.setPrototypeOf(pockets, bed);
+Object.setPrototypeOf(bed, table);
+Object.setPrototypeOf(table, head);
