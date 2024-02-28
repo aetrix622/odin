@@ -76,6 +76,10 @@ const Formatter3 = (function(doc) {
         return text.toUpperCase();
     };
 
+    // the following function is dependent on the DOM being available in a web browser
+    // as a result, the function will cause an error in a different environment such
+    // as a server. To fix, we have passed in the page document as an argument and wrapped
+    // the statement in an if block that only runs if the page actually exists.
     const writeToDOM = (selector, message) => {
         if (!!doc && "querySelector" in doc) {
             doc.querySelector(selector).innerHTML = message;
@@ -86,6 +90,6 @@ const Formatter3 = (function(doc) {
         makeUppercase,
         writeToDOM,
     }
-})();
+})(document); // Don't forget to pass in the document as an argument here
 
 Formatter3.writeToDOM("#target", "Hi there");
